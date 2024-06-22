@@ -17,7 +17,7 @@ function Login() {
   return (
     <form>
       <div className="form-group mt-4">
-        <label>Wpisz adres email</label>
+        <label>Wpisz login</label>
         <input
           type="login"
           className="form-control "

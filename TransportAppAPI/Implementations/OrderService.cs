@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Net;
 using TransportAppAPI.Contexts;
 using TransportAppAPI.DTOs;
 using TransportAppAPI.Interfaces;
@@ -44,11 +45,10 @@ namespace TransportAppAPI.Implementations
 
         public List<GetOrdersDTO> GetOrders()
         {
-            //throw new NotImplementedException();
-            return _context.ZleceniaTransportu.Select(x => new GetOrdersDTO
+            return  _context.ZleceniaTransportu.Include(x=>x.przewoznik).Select(x => new GetOrdersDTO
             {
                 id = x.id,
-                nazwisko = _context.Osoby.Where(y=>y.idPracownika == x.idPrzewoznika).FirstOrDefault().nazwisko,
+                nazwisko = x.przewoznik.nazwisko,
                 status = x.status,
                 dataWyruszenia = x.daneTransportowe.dataWyruszenia,
                 planowanaDataDostarczenia = x.daneTransportowe.planowanaDataDostarczenia,

@@ -1,4 +1,5 @@
-﻿using TransportAppAPI.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using TransportAppAPI.Contexts;
 using TransportAppAPI.DTOs;
 using TransportAppAPI.Interfaces;
 
@@ -33,8 +34,11 @@ namespace TransportAppAPI.Implementations
 
         public List<GetProductsDTO> GetProductsByOrderId(int orderId)
         {
-            return _context.Towary.Where(x=>x.idTransportu == orderId).Select(x => new GetProductsDTO { id = x.id, nazwa = x.nazwa, ilosc = x.ilosc, czyNiebezpieczny = x.czyNiebezpieczne, kategoria = x.kategoria }).ToList();
-
+            return _context.ZleceniaTransportu.Include(x => x.towary)
+                .Where(b => b.id == orderId)
+                .SelectMany(m => m.towary)
+                .Select(l => new GetProductsDTO { id = l.id, nazwa = l.nazwa, ilosc = l.ilosc, czyNiebezpieczny = l.czyNiebezpieczne, kategoria = l.kategoria })
+                .ToList();
         }
 
         public List<GetProductsDTO> GetProductsWithoutOrderId()
