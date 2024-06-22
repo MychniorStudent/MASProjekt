@@ -33,7 +33,7 @@ function Orders() {
         setData(jsonObject);
       })
       .catch((error) => console.log(error));
-  });
+  }, []);
 
   return (
     <Container>

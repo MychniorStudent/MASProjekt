@@ -5,11 +5,11 @@ import { loginContext } from "../App";
 function Topnavbar() {
   const { userName, userPassword, setUserNameContext, setUserPasswordContext } =
     useContext(loginContext);
-  const [, forceUpdate] = useReducer((x) => x + 1, 0);
+  //const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const logout = () => {
     setUserNameContext("");
     setUserPasswordContext("");
-    forceUpdate();
+    //forceUpdate();
   };
   useEffect(() => {});
 

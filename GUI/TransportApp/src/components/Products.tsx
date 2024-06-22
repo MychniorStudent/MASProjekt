@@ -25,7 +25,7 @@ function Products() {
         <li className="list-group-item col-sm-2 ">Ilosc</li>
       </ul>
       {data.map((item, index) => (
-        <ul className="list-group list-group-horizontal ml-2">
+        <ul className="list-group list-group-horizontal ml-2" key={item.id}>
           <li className="list-group-item col-sm-1">{item.id}</li>
           <li className="list-group-item col-sm-2">{item.nazwa}</li>
           <li className="list-group-item col-sm-2 ">{item.kategoria}</li>
