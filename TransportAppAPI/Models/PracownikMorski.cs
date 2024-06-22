@@ -10,13 +10,18 @@ namespace TransportAppAPI.Models
         //Przesłonięcie
         public override decimal obliczWyplate()
         {
-            return zlecenia.Count * 50 + (int)stopienMarynarski * 500;
+            return (decimal)(zlecenia.Count * 50 + zsumujDodatkiMorskie());
         }
 
         //Polimorfizm
         public override string zwrocInformacje()
         {
             return $"Nazwisko {this.nazwisko}, adres zamieszkania: {this.adresZamieszkania}, stopien marynarski {this.stopienMarynarski}";
+        }
+
+        float zsumujDodatkiMorskie()
+        {
+            return (float)((int)stopienMarynarski * 500);
         }
     }
 }

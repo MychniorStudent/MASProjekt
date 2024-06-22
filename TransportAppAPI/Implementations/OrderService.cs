@@ -39,7 +39,6 @@ namespace TransportAppAPI.Implementations
                 _context.Towary.FirstOrDefault(y => y.id == x).idTransportu = zlecenieTransportu.id;
             });
             _context.SaveChanges();
-
             return true;
         }
 
@@ -49,7 +48,7 @@ namespace TransportAppAPI.Implementations
             return _context.ZleceniaTransportu.Select(x => new GetOrdersDTO
             {
                 id = x.id,
-                nazwisko = x.przewoznik.nazwisko,
+                nazwisko = _context.Osoby.Where(y=>y.idPracownika == x.idPrzewoznika).FirstOrDefault().nazwisko,
                 status = x.status,
                 dataWyruszenia = x.daneTransportowe.dataWyruszenia,
                 planowanaDataDostarczenia = x.daneTransportowe.planowanaDataDostarczenia,

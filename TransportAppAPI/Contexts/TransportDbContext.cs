@@ -15,7 +15,6 @@ namespace TransportAppAPI.Contexts
         }
 
         //Ekstensja i Ekstensja trwałość
-        public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         public virtual DbSet<SrodekTransportu> SrodkiTransportu { get; set; }
         public virtual DbSet<Osoba> Osoby { get; set; }
@@ -32,15 +31,6 @@ namespace TransportAppAPI.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("transport");
-
-
-            modelBuilder.Entity<MyEntity>(entity =>
-            {
-                // Mapowanie prywatnego pola na kolumnę w tabeli
-                entity.Property<int>("_myPrivateField")
-                    .HasColumnName("MyPrivateFieldColumn")
-                    .IsRequired();
-            });
 
             modelBuilder.Entity<SrodekTransportu>(entity =>
             {
@@ -85,7 +75,7 @@ namespace TransportAppAPI.Contexts
                     TerenTransportera = new List<TerenTransportera> { TerenTransportera.Ladowy, TerenTransportera.Wodny },
                     numerRejestracyjny = "WL1234",
                     marka = "Wolkzwagen",
-                    model = "pu",
+                    model = "polo",
                     dataOstatniegoPrzeglady = DateTime.Now,
                     czyMozeNiebezpieczne = false,
                     rodzajNapedu = RodzajNapedu.Spalinowy,
@@ -101,17 +91,6 @@ namespace TransportAppAPI.Contexts
                 entity.HasDiscriminator<string>("PlacowkaDiscriminator")
                 .HasValue<PlacowkaLadowa>("PlacowkaLadowa")
                 .HasValue<PlacowkaMorska>("PlacowkaMorska");
-
-                //entity.HasData(
-                //    new PlacowkaLadowa {idPlacowki = 1, dataZalozenia = DateTime.Now, kraj = "Polska", region = "Mazwosze", aglomeracja="Warszawska", nazwaDrogiEkspresowej = "S8" },
-                //    new PlacowkaMorska { idPlacowki = 2, dataZalozenia = DateTime.Now, kraj = "Polska", region = "Pomorskie",liczbaDokow=3,czyObslugujeLodziePodwodne = true }
-                //    );
-
-            //    //pracownik
-            //    entity.HasMany(x=>x.pracownicy)
-            //    .WithOne(x=>x.placowka)
-            //    .HasForeignKey(x=>x.idPlacowki)
-            //    .OnDelete(DeleteBehavior.Cascade);
             });
             modelBuilder.Entity<PlacowkaLadowa>(entity =>
             {
@@ -131,13 +110,13 @@ namespace TransportAppAPI.Contexts
             modelBuilder.Entity<PracownikLadowy>(entity =>
             {
                 entity.HasData(
-                    new PracownikLadowy { idPracownika = 1, idPlacowki = 1, imie = "", nazwisko = "", adresZamieszkania = "", dataUrodzenia = DateTime.Now, kategoriaPJ = new List<Enums.KategoriaPJ> { Enums.KategoriaPJ.A, Enums.KategoriaPJ.C } }
+                    new PracownikLadowy { idPracownika = 1, idPlacowki = 1, imie = "Michal", nazwisko = "Góra", adresZamieszkania = "", dataUrodzenia = DateTime.Now, kategoriaPJ = new List<Enums.KategoriaPJ> { Enums.KategoriaPJ.A, Enums.KategoriaPJ.C } }
                   );
             });
             modelBuilder.Entity<PracownikMorski>(entity =>
             {
                 entity.HasData(
-                    new PracownikMorski { idPracownika = 2, idPlacowki = 2, imie = "", nazwisko = "", adresZamieszkania = "", dataUrodzenia = DateTime.Now, stopienMarynarski = Enums.StopienMarynarski.Majtek }
+                    new PracownikMorski { idPracownika = 2, idPlacowki = 2, imie = "Bartek", nazwisko = "Ann", adresZamieszkania = "", dataUrodzenia = DateTime.Now, stopienMarynarski = Enums.StopienMarynarski.Majtek }
                 );
             });
 
@@ -153,16 +132,6 @@ namespace TransportAppAPI.Contexts
                 .WithMany(x => x.pracownicy)
                 .HasForeignKey(x => x.idPlacowki).OnDelete(DeleteBehavior.Restrict);
 
-                //entity.HasData(
-                //    new PracownikLadowy {idPracownika = 1, idPlacowki = 1, imie = "", nazwisko = "", adresZamieszkania = "", dataUrodzenia = DateTime.Now, kategoriaPJ = new List<Enums.KategoriaPJ> { Enums.KategoriaPJ.A, Enums.KategoriaPJ.C } },
-                //    new PracownikMorski {idPracownika = 2, idPlacowki = 2, imie = "", nazwisko="",adresZamieszkania="",dataUrodzenia = DateTime.Now, stopienMarynarski = Enums.StopienMarynarski.Majtek}
-                //);
-                //.IsRequired();
-
-                //entity.HasMany(x=>x.zlecenia)
-                //.WithOne(x=>x.przewoznik)
-                //.HasForeignKey(x=>x.idPrzewoznika)
-                //.OnDelete(DeleteBehavior.NoAction);
             });
 
             //zlecenie transportu
@@ -179,9 +148,6 @@ namespace TransportAppAPI.Contexts
                 .HasOne(x => x.srodekTransportu)
                 .WithMany(x => x.zlecenia)
                 .HasForeignKey(x => x.idSrodekTransportu);
-
-                //relacja do towarow definiowana w towarach
-
 
 
                 //osoba
@@ -201,20 +167,15 @@ namespace TransportAppAPI.Contexts
             modelBuilder.Entity<DaneTransportowe>(entity => {
                 entity.HasKey(x => x.id);
 
-                //zlecenie transportu
-                //entity.HasOne(x => x.zelecenieTransportu)
-                //.WithOne(x => x.daneTransportowe)
-                //.HasForeignKey<ZlecenieTransportu>(x => x.idDaneTransportowe);
-
                 //placowka
                 entity.HasOne(x => x.placowka)
                 .WithMany(x => x.daneTransportowe)
                 .HasForeignKey(x => x.idPlacowki).OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasData(
-                    new DaneTransportowe { id = 1, dataWyruszenia = DateTime.Now, planowanaDataDostarczenia = DateTime.Now.AddDays(5), idZlecenieTransportu = 1, idPlacowki = 1 },
-                    new DaneTransportowe { id = 2, dataWyruszenia = DateTime.Now, planowanaDataDostarczenia = DateTime.Now.AddDays(11), idZlecenieTransportu = 2, idPlacowki = 1 },
-                    new DaneTransportowe { id = 3, dataWyruszenia = DateTime.Now, planowanaDataDostarczenia = DateTime.Now.AddDays(15), idZlecenieTransportu = 3, idPlacowki = 1 }
+                    new DaneTransportowe { id = 1, dataWyruszenia = DateTime.Now, planowanaDataDostarczenia = DateTime.Now.AddDays(5), dataDostarczenia = DateTime.Now.AddDays(5),  idZlecenieTransportu = 1, idPlacowki = 1 },
+                    new DaneTransportowe { id = 2, dataWyruszenia = DateTime.Now, planowanaDataDostarczenia = DateTime.Now.AddDays(11), dataDostarczenia = DateTime.Now.AddDays(11), idZlecenieTransportu = 2, idPlacowki = 1 },
+                    new DaneTransportowe { id = 3, dataWyruszenia = DateTime.Now, planowanaDataDostarczenia = DateTime.Now.AddDays(15), dataDostarczenia = DateTime.Now.AddDays(16), idZlecenieTransportu = 3, idPlacowki = 1 }
                     );
               
             });

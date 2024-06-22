@@ -28,5 +28,10 @@ namespace TransportAppAPI.Models
         {
             return $"Nazwisko {this.nazwisko}, adres zamieszkania: {this.adresZamieszkania}, kategorie prawa jazdy {kategoriaPJ}";
         }
+
+        public float podliczKilometrowke()
+        {
+            return zlecenia.Count * 100;
+        }
     }
 }

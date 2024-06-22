@@ -8,6 +8,7 @@ import GetProductsDTO from "../types/GetProductsDTO";
 import GetOrdersDTO from "../types/GetOrdersDTO";
 import GetTransportsDTO from "../types/GetTransportsDTO";
 import AddOrderDTO from "../types/AddOrderDTO";
+import { useNavigate } from "react-router-dom";
 
 function AddOrder() {
   const [selectedDateStart, setSelectedDateStart] = useState<Date>();
@@ -22,6 +23,7 @@ function AddOrder() {
   const [transportCheckBoxCheckedId, setTransportCheckBoxCheckedId] =
     useState<number>(-1);
   useState<number>();
+  const navigate = useNavigate();
 
   const handleCheckboxProduktyChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -101,6 +103,7 @@ function AddOrder() {
     } catch (error) {
       console.error("Error:", error);
     }
+    navigate("/Orders");
   };
 
   return (

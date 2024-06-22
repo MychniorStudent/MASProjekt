@@ -8,28 +8,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TransportAppAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Sziton : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
                 name: "transport");
-
-            migrationBuilder.CreateTable(
-                name: "MyEntities",
-                schema: "transport",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MyProperty = table.Column<int>(type: "int", nullable: false),
-                    MyPrivateFieldColumn = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MyEntities", x => x.Id);
-                });
 
             migrationBuilder.CreateTable(
                 name: "Placowki",
@@ -228,19 +213,19 @@ namespace TransportAppAPI.Migrations
                 schema: "transport",
                 table: "Placowki",
                 columns: new[] { "idPlacowki", "PlacowkaDiscriminator", "aglomeracja", "dataZalozenia", "kraj", "nazwaDrogiEkspresowej", "region" },
-                values: new object[] { 1, "PlacowkaLadowa", "Warszawska", new DateTime(2024, 6, 20, 19, 17, 7, 244, DateTimeKind.Local).AddTicks(3469), "Polska", "S8", "Mazwosze" });
+                values: new object[] { 1, "PlacowkaLadowa", "Warszawska", new DateTime(2024, 6, 22, 15, 33, 11, 890, DateTimeKind.Local).AddTicks(3210), "Polska", "S8", "Mazwosze" });
 
             migrationBuilder.InsertData(
                 schema: "transport",
                 table: "Placowki",
                 columns: new[] { "idPlacowki", "PlacowkaDiscriminator", "czyObslugujeLodziePodwodne", "dataZalozenia", "kraj", "liczbaDokow", "region", "zbiornikWodny" },
-                values: new object[] { 2, "PlacowkaMorska", true, new DateTime(2024, 6, 20, 19, 17, 7, 244, DateTimeKind.Local).AddTicks(3519), "Polska", 3, "Pomorskie", "bajkal" });
+                values: new object[] { 2, "PlacowkaMorska", true, new DateTime(2024, 6, 22, 15, 33, 11, 890, DateTimeKind.Local).AddTicks(3248), "Polska", 3, "Pomorskie", "bajkal" });
 
             migrationBuilder.InsertData(
                 schema: "transport",
                 table: "SrodkiTransportu",
                 columns: new[] { "idSrodkaTransportu", "TerenList", "iloscPaliwaColumn", "mocColumn", "MyPrivateFieldColumn", "poczatkowaPojemnoscAkumulatoraColumn", "pojemnoscBakuColumn", "PrzejechanaOdlegloscKmColumn", "PrzeplynietaOdlegloscMileColumn", "sprawnoscAkumulatoraColumn", "czyMozeNiebezpieczne", "dataOstatniegoPrzeglady", "marka", "model", "numerRejestracyjny", "rodzajNapedu" },
-                values: new object[] { 1, "Ladowy,Wodny", 50, 0, 0, 0, 0, 0, 0, 0f, false, new DateTime(2024, 6, 20, 19, 17, 7, 243, DateTimeKind.Local).AddTicks(5564), "Wolkzwagen", "pu", "WL1234", 0 });
+                values: new object[] { 1, "Ladowy,Wodny", 50, 0, 0, 0, 0, 0, 0, 0f, false, new DateTime(2024, 6, 22, 15, 33, 11, 889, DateTimeKind.Local).AddTicks(7063), "Wolkzwagen", "polo", "WL1234", 0 });
 
             migrationBuilder.InsertData(
                 schema: "transport",
@@ -262,13 +247,13 @@ namespace TransportAppAPI.Migrations
                 schema: "transport",
                 table: "Osoby",
                 columns: new[] { "idPracownika", "OsobaDiscriminator", "adresZamieszkania", "dataUrodzenia", "idPlacowki", "idSuperPracownikaLadowy", "imie", "kategoriePJ", "nazwisko" },
-                values: new object[] { 1, "PracownikLadowy", "", new DateTime(2024, 6, 20, 19, 17, 7, 244, DateTimeKind.Local).AddTicks(3542), 1, null, "", "A,C", "" });
+                values: new object[] { 1, "PracownikLadowy", "", new DateTime(2024, 6, 22, 15, 33, 11, 890, DateTimeKind.Local).AddTicks(3266), 1, null, "Michal", "A,C", "Góra" });
 
             migrationBuilder.InsertData(
                 schema: "transport",
                 table: "Osoby",
                 columns: new[] { "idPracownika", "OsobaDiscriminator", "adresZamieszkania", "dataUrodzenia", "idPlacowki", "idSuperPracownikaMorski", "imie", "nazwisko" },
-                values: new object[] { 2, "PracownikMorski", "", new DateTime(2024, 6, 20, 19, 17, 7, 244, DateTimeKind.Local).AddTicks(3901), 2, null, "", "" });
+                values: new object[] { 2, "PracownikMorski", "", new DateTime(2024, 6, 22, 15, 33, 11, 890, DateTimeKind.Local).AddTicks(3503), 2, null, "Bartek", "Ann" });
 
             migrationBuilder.InsertData(
                 schema: "transport",
@@ -287,9 +272,9 @@ namespace TransportAppAPI.Migrations
                 columns: new[] { "id", "dataDostarczenia", "dataWyruszenia", "idPlacowki", "idZlecenieTransportu", "planowanaDataDostarczenia" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2024, 6, 20, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8771), 1, 1, new DateTime(2024, 6, 25, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8792) },
-                    { 2, null, new DateTime(2024, 6, 20, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8796), 1, 2, new DateTime(2024, 7, 1, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8797) },
-                    { 3, null, new DateTime(2024, 6, 20, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8799), 1, 3, new DateTime(2024, 7, 5, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8800) }
+                    { 1, new DateTime(2024, 6, 27, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5791), new DateTime(2024, 6, 22, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5772), 1, 1, new DateTime(2024, 6, 27, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5788) },
+                    { 2, new DateTime(2024, 7, 3, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5800), new DateTime(2024, 6, 22, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5798), 1, 2, new DateTime(2024, 7, 3, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5799) },
+                    { 3, new DateTime(2024, 7, 8, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5804), new DateTime(2024, 6, 22, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5802), 1, 3, new DateTime(2024, 7, 7, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5803) }
                 });
 
             migrationBuilder.InsertData(
@@ -365,10 +350,6 @@ namespace TransportAppAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "DaneTransportowe",
-                schema: "transport");
-
-            migrationBuilder.DropTable(
-                name: "MyEntities",
                 schema: "transport");
 
             migrationBuilder.DropTable(

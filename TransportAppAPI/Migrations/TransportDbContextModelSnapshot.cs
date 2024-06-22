@@ -59,47 +59,30 @@ namespace TransportAppAPI.Migrations
                         new
                         {
                             id = 1,
-                            dataWyruszenia = new DateTime(2024, 6, 20, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8771),
+                            dataDostarczenia = new DateTime(2024, 6, 27, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5791),
+                            dataWyruszenia = new DateTime(2024, 6, 22, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5772),
                             idPlacowki = 1,
                             idZlecenieTransportu = 1,
-                            planowanaDataDostarczenia = new DateTime(2024, 6, 25, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8792)
+                            planowanaDataDostarczenia = new DateTime(2024, 6, 27, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5788)
                         },
                         new
                         {
                             id = 2,
-                            dataWyruszenia = new DateTime(2024, 6, 20, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8796),
+                            dataDostarczenia = new DateTime(2024, 7, 3, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5800),
+                            dataWyruszenia = new DateTime(2024, 6, 22, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5798),
                             idPlacowki = 1,
                             idZlecenieTransportu = 2,
-                            planowanaDataDostarczenia = new DateTime(2024, 7, 1, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8797)
+                            planowanaDataDostarczenia = new DateTime(2024, 7, 3, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5799)
                         },
                         new
                         {
                             id = 3,
-                            dataWyruszenia = new DateTime(2024, 6, 20, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8799),
+                            dataDostarczenia = new DateTime(2024, 7, 8, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5804),
+                            dataWyruszenia = new DateTime(2024, 6, 22, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5802),
                             idPlacowki = 1,
                             idZlecenieTransportu = 3,
-                            planowanaDataDostarczenia = new DateTime(2024, 7, 5, 19, 17, 7, 245, DateTimeKind.Local).AddTicks(8800)
+                            planowanaDataDostarczenia = new DateTime(2024, 7, 7, 15, 33, 11, 891, DateTimeKind.Local).AddTicks(5803)
                         });
-                });
-
-            modelBuilder.Entity("TransportAppAPI.Models.MyEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("int");
-
-                    b.Property<int>("_myPrivateField")
-                        .HasColumnType("int")
-                        .HasColumnName("MyPrivateFieldColumn");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MyEntities", "transport");
                 });
 
             modelBuilder.Entity("TransportAppAPI.Models.Osoba", b =>
@@ -260,9 +243,9 @@ namespace TransportAppAPI.Migrations
                             _przeplynietaOdlegloscMile = 0,
                             _sprawnoscAkumulatora = 0f,
                             czyMozeNiebezpieczne = false,
-                            dataOstatniegoPrzeglady = new DateTime(2024, 6, 20, 19, 17, 7, 243, DateTimeKind.Local).AddTicks(5564),
+                            dataOstatniegoPrzeglady = new DateTime(2024, 6, 22, 15, 33, 11, 889, DateTimeKind.Local).AddTicks(7063),
                             marka = "Wolkzwagen",
-                            model = "pu",
+                            model = "polo",
                             numerRejestracyjny = "WL1234",
                             rodzajNapedu = 0
                         });
@@ -478,10 +461,10 @@ namespace TransportAppAPI.Migrations
                         {
                             idPracownika = 1,
                             adresZamieszkania = "",
-                            dataUrodzenia = new DateTime(2024, 6, 20, 19, 17, 7, 244, DateTimeKind.Local).AddTicks(3542),
+                            dataUrodzenia = new DateTime(2024, 6, 22, 15, 33, 11, 890, DateTimeKind.Local).AddTicks(3266),
                             idPlacowki = 1,
-                            imie = "",
-                            nazwisko = "",
+                            imie = "Michal",
+                            nazwisko = "Góra",
                             kategoriePJ = "A,C"
                         });
                 });
@@ -504,10 +487,10 @@ namespace TransportAppAPI.Migrations
                         {
                             idPracownika = 2,
                             adresZamieszkania = "",
-                            dataUrodzenia = new DateTime(2024, 6, 20, 19, 17, 7, 244, DateTimeKind.Local).AddTicks(3901),
+                            dataUrodzenia = new DateTime(2024, 6, 22, 15, 33, 11, 890, DateTimeKind.Local).AddTicks(3503),
                             idPlacowki = 2,
-                            imie = "",
-                            nazwisko = ""
+                            imie = "Bartek",
+                            nazwisko = "Ann"
                         });
                 });
 
@@ -529,7 +512,7 @@ namespace TransportAppAPI.Migrations
                         new
                         {
                             idPlacowki = 1,
-                            dataZalozenia = new DateTime(2024, 6, 20, 19, 17, 7, 244, DateTimeKind.Local).AddTicks(3469),
+                            dataZalozenia = new DateTime(2024, 6, 22, 15, 33, 11, 890, DateTimeKind.Local).AddTicks(3210),
                             kraj = "Polska",
                             region = "Mazwosze",
                             aglomeracja = "Warszawska",
@@ -557,7 +540,7 @@ namespace TransportAppAPI.Migrations
                         new
                         {
                             idPlacowki = 2,
-                            dataZalozenia = new DateTime(2024, 6, 20, 19, 17, 7, 244, DateTimeKind.Local).AddTicks(3519),
+                            dataZalozenia = new DateTime(2024, 6, 22, 15, 33, 11, 890, DateTimeKind.Local).AddTicks(3248),
                             kraj = "Polska",
                             region = "Pomorskie",
                             czyObslugujeLodziePodwodne = true,

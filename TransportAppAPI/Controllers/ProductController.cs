@@ -32,7 +32,7 @@ namespace TransportAppAPI.Controllers
         [ActionName("GetProductsWithoutOrderId")]
         public IActionResult GetProductsWithoutOrderId()
         {
-            return Ok(_service.GetProductsByOrderId(1));
+            return Ok(_service.GetProductsWithoutOrderId());
         }
 
         [HttpPost(Name = "AddProduct")]

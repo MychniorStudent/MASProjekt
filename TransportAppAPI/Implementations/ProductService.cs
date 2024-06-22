@@ -39,8 +39,10 @@ namespace TransportAppAPI.Implementations
 
         public List<GetProductsDTO> GetProductsWithoutOrderId()
         {
-            return _context.Towary.Where(x => x.idTransportu.HasValue).Select(x => new GetProductsDTO
+            var hehe = _context.Towary.ToList();
+            var towary = _context.Towary.Where(x => x.idTransportu == null).Select(x => new GetProductsDTO
             { id = x.id, nazwa = x.nazwa, ilosc = x.ilosc, czyNiebezpieczny = x.czyNiebezpieczne, kategoria = x.kategoria }).ToList();
+            return towary;
         }
     }
 }
