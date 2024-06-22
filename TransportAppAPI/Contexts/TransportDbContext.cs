@@ -198,7 +198,7 @@ namespace TransportAppAPI.Contexts
                     new Towar {id = 3,czyNiebezpieczne=true,ilosc=20,kategoria = "Alkohol", nazwa = "Bimber", idTransportu =2},
                     new Towar {id = 4,czyNiebezpieczne=false,ilosc=10,kategoria = "Alkohol", nazwa = "Whiksy", idTransportu =1},
                     new Towar {id = 5,czyNiebezpieczne=true,ilosc=500,kategoria = "Alkohol", nazwa = "Wino", idTransportu = 2},
-                    new Towar {id = 6,czyNiebezpieczne=false,ilosc=15,kategoria = "Alkohol", nazwa = "Wudka", idTransportu =1},
+                    new Towar {id = 6,czyNiebezpieczne=false,ilosc=15,kategoria = "Alkohol", nazwa = "Wudka", idTransportu =3},
                     new Towar {id = 7,czyNiebezpieczne=false,ilosc=15,kategoria = "Alkohol", nazwa = "Wudka2"},
                     new Towar {id = 8,czyNiebezpieczne=false,ilosc=15,kategoria = "Alkohol", nazwa = "Wudka3"}
                     
